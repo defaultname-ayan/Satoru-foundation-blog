@@ -62,33 +62,6 @@ A modern, full-stack blog platform built with **Next.js 15**, **MongoDB**, and *
 
 ---
 
-## Project Structure
-
-src/
-├── app/
-│ ├── admin/
-│ │ ├── dashboard/ # Admin dashboard pages
-│ │ ├── login/ # Authentication pages
-│ │ ├── posts/ # Posts management (list, new, edit)
-│ │ └── page.js # Admin root redirect
-│ ├── api/ # Backend API routes
-│ │ ├── admin/ # Admin API endpoints (auth required)
-│ │ ├── auth/ # Authentication API ([...nextauth])
-│ │ └── blogs/ # Public blog API endpoints
-│ ├── blog/ # Public blog pages with dynamic routing
-│ ├── globals.css # Global styles (Tailwind configured)
-│ ├── layout.js # Root layout with session provider setup
-│ └── page.js # Public blog homepage
-├── Components/ # React components (AdminLayout, etc.)
-├── Helpers/ # Helper functions (database connection, etc.)
-├── Models/ # Mongoose models
-├── Script/ # Scripts (admin seeding, env check)
-public/ # Static assets (favicon, images)
-.env.local # Environment variables
-package.json # Project dependencies and scripts
-
----
-
 ## Installation
 
 ### Prerequisites
