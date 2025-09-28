@@ -1,36 +1,222 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Satoru Blog
 
-## Getting Started
+![Satoru Blog Banner](./public/satoru-blog-banner.png)
 
-First, run the development server:
+A modern, full-stack blog platform built with **Next.js 15**, **MongoDB**, and **NextAuth** for authentication. This project offers a robust, secure, and sleek content management system for bloggers with an intuitive admin dashboard and a beautiful public-facing blog.
 
-```bash
+---
+
+## Table of Contents
+
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Development](#development)
+- [Authentication & Security](#authentication--security)
+- [Usage](#usage)
+- [Deployment](#deployment)
+- [Future Enhancements](#future-enhancements)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
+
+## Features
+
+- **Admin Panel**
+  - Secure login with NextAuth and credentials provider
+  - Dashboard with statistics and recent activity
+  - Create, edit, publish/unpublish, and delete blog posts
+  - Manage post tags, featured images, and description
+  - Efficient search and filter posts by status and tags
+
+- **Public Blog**
+  - List of published blog posts with pagination
+  - Full read posts with rich content and images
+  - Tag filtering and search
+  - Related posts suggestions based on tags
+  - View count tracking for popularity insights
+  - Responsive design optimized for mobile and desktop
+
+---
+
+## Tech Stack
+
+- **Frontend & Backend:**  
+  [Next.js 15](https://nextjs.org/) - React framework with App Router for server components and routing
+
+- **Database:**  
+  [MongoDB](https://www.mongodb.com/) with Mongoose ODM for schema-driven database interaction
+
+- **Authentication:**  
+  [NextAuth.js](https://next-auth.js.org/) for session handling and secure authentication with credentials provider
+
+- **Styling:**  
+  [Tailwind CSS](https://tailwindcss.com/) for utility-first, responsive styling  
+
+- **API:**  
+  RESTful API routes built with Next.js App Router API handlers (GET, POST, PUT, DELETE)
+
+- **Deployment Ready:**  
+  Optimized for static and server-side rendering, compatible with Vercel, Netlify, Railway, etc.
+
+---
+
+## Project Structure
+
+src/
+├── app/
+│ ├── admin/
+│ │ ├── dashboard/ # Admin dashboard pages
+│ │ ├── login/ # Authentication pages
+│ │ ├── posts/ # Posts management (list, new, edit)
+│ │ └── page.js # Admin root redirect
+│ ├── api/ # Backend API routes
+│ │ ├── admin/ # Admin API endpoints (auth required)
+│ │ ├── auth/ # Authentication API ([...nextauth])
+│ │ └── blogs/ # Public blog API endpoints
+│ ├── blog/ # Public blog pages with dynamic routing
+│ ├── globals.css # Global styles (Tailwind configured)
+│ ├── layout.js # Root layout with session provider setup
+│ └── page.js # Public blog homepage
+├── Components/ # React components (AdminLayout, etc.)
+├── Helpers/ # Helper functions (database connection, etc.)
+├── Models/ # Mongoose models
+├── Script/ # Scripts (admin seeding, env check)
+public/ # Static assets (favicon, images)
+.env.local # Environment variables
+package.json # Project dependencies and scripts
+
+---
+
+## Installation
+
+### Prerequisites
+
+- Node.js v18 or higher
+- MongoDB Atlas or local MongoDB instance
+- npm or yarn package manager
+
+### Setup
+
+1. **Clone the repository:**
+git clone https://github.com/yourusername/satoru-blog.git
+cd satoru-blog
+
+
+
+2. **Install dependencies:**
+npm install
+
+or
+yarn
+
+
+
+3. **Configure environment variables:**  
+Create a `.env.local` file at the project root with the following variables:
+MONGODB_URI=your_mongodb_connection_string
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_nextauth_secret_key
+ADMIN_EMAIL=admin@blog.com
+ADMIN_PASSWORD=Admin123!
+ADMIN_NAME=Blog Administrator
+
+
+
+4. **Seed admin user:**
+npm run seed:admin
+
+or
+yarn seed:admin
+
+
+
+---
+
+## Development
+
+Start the development server:
+
 npm run dev
-# or
+
+or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Open [http://localhost:3000](http://localhost:3000) to view the public blog
+- Admin panel login at [http://localhost:3000/admin/login](http://localhost:3000/admin/login)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Authentication & Security
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- User sessions are managed with JWT tokens through NextAuth.js
+- Passwords are hashed with bcryptjs before storage
+- Admin panel is restricted to authenticated users with admin roles
+- API routes are protected and return 401 Unauthorized if accessed without proper auth
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Usage
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Public users:**  
+  View published posts, search by tags or keywords, and read full blog entries with related content.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Administrators:**  
+  Login securely, create and manage blog posts, monitor views and stats on dashboard, and publish or draft posts as needed.
+
+---
+
+## Deployment
+
+The app is production-ready and can be deployed to platforms like Vercel or Netlify.
+
+**Recommended deployment steps:**
+
+- Set environment variables on your hosting provider
+- Use production MongoDB URI (Atlas recommended)
+- Run build script:  
+npm run build
+npm start
+
+
+- Set `NEXTAUTH_URL` to your deployed domain
+
+---
+
+## Future Enhancements
+
+- Comments integration (Disqus, custom)
+- Image upload and media management
+- Dark mode and UI themes
+- RSS feeds and newsletter signup
+- Full-text search with Algolia or ElasticSearch
+
+---
+
+## Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to submit a pull request or open an issue.
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+## Contact
+
+Created by Your Name - [your.email@example.com](mailto:your.email@example.com)
+
+[GitHub Profile](https://github.com/yourusername)
+
+---
+
+Thank you for checking out the Satoru Blog! 🚀
