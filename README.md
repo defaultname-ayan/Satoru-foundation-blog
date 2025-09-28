@@ -1,6 +1,5 @@
 # Satoru Blog
 
-![Satoru Blog Banner](./public/satoru-blog-banner.png)
 
 A modern, full-stack blog platform built with **Next.js 15**, **MongoDB**, and **NextAuth** for authentication. This project offers a robust, secure, and sleek content management system for bloggers with an intuitive admin dashboard and a beautiful public-facing blog.
 
