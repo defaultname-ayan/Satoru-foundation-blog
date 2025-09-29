@@ -1,4 +1,4 @@
-// src/Script/envCheck.js
+
 
 const path = require('path')
 const fs = require('fs')
@@ -172,7 +172,7 @@ function generateSampleEnv() {
   console.log('\n📝 Sample .env.local configuration:')
   console.log('=' .repeat(50))
   console.log(`# Database
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/satoru_blog
+MONGODB_URI={mongo url}
 
 # Authentication
 NEXTAUTH_URL=http://localhost:3000
